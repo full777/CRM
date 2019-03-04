@@ -1,0 +1,32 @@
+<project basedir="." default="regression" name="automation test">
+    <property name="base.dir" value="/javaSelenium/Crm"/>
+    <property name="testng.output.dir" value="${base.dir}/test-output"/>
+    <property name="3rd.lib.dir" value="${base.dir}/lib"/>
+    <property name="testng.file" value="Test.xml"/>
+    
+    <taskdef resource="testngtasks" classpath="${3rd.lib.dir}/testng.jar"/>
+ 
+    <target name="clean">
+        <delete dir="${base.dir}/bin"/>
+    </target>
+    <target name="compile" depends="clean">
+        <mkdir dir="${base.dir}/bin"/>
+        <javac srcdir="${base.dir}/src" destdir="${base.dir}/bin" classpathref="classes" includeantruntime="off" debug="on" debuglevel="lines,vars,source" encoding="GBK"/><!-- UTF-8 -->
+    </target>
+ 
+    <path id="classes">
+        <fileset dir="${3rd.lib.dir}" includes="*jar"/>
+        <fileset dir="${3rd.lib.dir}" includes="*zip"/>
+        <pathelement location="${base.dir}/bin"/>
+    </path>
+ 
+    <target name="regression" depends="compile">
+        <testng outputdir="${testng.output.dir}" classpathref="classes" delegateCommandSystemProperties="true"
+        	haltOnfailure="true" useDefaultListeners="false" listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter" failureproperty="test.failed">
+            <xmlfileset dir="${base.dir}/src" includes="${testng.file}"/>
+            <!--<xmlfileset dir="${base.dir}/src" includes="${testng.fileOne}"/>-->
+        	<sysproperty key="org.uncommons.reportng.title" value="Test Report"/>
+        </testng>
+    	<fail message="test failed.." if="test.failed"/>
+    </target>
+</project>

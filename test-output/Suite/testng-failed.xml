@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="crm.com.webtest.customerEditTest">
+        <methods>
+          <include name="afterClass"/>
+          <include name="editSucessOne"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- crm.com.webtest.customerEditTest -->
+      <class name="crm.com.webtest.customerFindTest">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="afterClass"/>
+        </methods>
+      </class> <!-- crm.com.webtest.customerFindTest -->
+      <class name="crm.com.webtest.customerTest">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="afterClass"/>
+        </methods>
+      </class> <!-- crm.com.webtest.customerTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
